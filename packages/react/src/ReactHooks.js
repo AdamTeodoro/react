@@ -98,14 +98,26 @@ export function useRef<T>(initialValue: T): {|current: T|} {
   return dispatcher.useRef(initialValue);
 }
 
-export function useEffect(
+// function useEffect(
+//   create: () => (() => void) | void,
+//   deps: Array<mixed> | void | null,
+// ): void {
+//   const dispatcher = resolveDispatcher();
+//   return dispatcher.useEffect(create, deps);
+// }
+
+export function onInitComponent(
   create: () => (() => void) | void,
-  deps: Array<mixed> | void | null,
 ): void {
   const dispatcher = resolveDispatcher();
-  return dispatcher.useEffect(create, deps);
+  return dispatcher.useEffect(create);
 }
 
+export function observeThis(deps: Array<mixed>): void {
+  const dispatcher = resolveDispatcher();
+  return dispatcher.useEffect(() => {}, deps);
+}
+                                          
 export function useInsertionEffect(
   create: () => (() => void) | void,
   deps: Array<mixed> | void | null,
