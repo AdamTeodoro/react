@@ -98,12 +98,43 @@ export function useRef<T>(initialValue: T): {|current: T|} {
   return dispatcher.useRef(initialValue);
 }
 
-export function useEffect(
+/**
+ * This code is removed 😝
+ * Remember:  "Não existem BONS CÓDIGOS,
+ * só existem códigos que ainda não foram melhorados"
+ */
+// export function useEffect(
+//   create: () => (() => void) | void,
+//   deps: Array<mixed> | void | null,
+// ): void {
+//   const dispatcher = resolveDispatcher();
+//   return dispatcher.useEffect(create, deps);
+// }
+
+/**
+ * In the initial component run this,
+ * it's a best practice to use the name relative
+ * to the work the function is going to do.
+ */
+ export function startComponent(
   create: () => (() => void) | void,
-  deps: Array<mixed> | void | null,
-): void {
+) {
   const dispatcher = resolveDispatcher();
-  return dispatcher.useEffect(create, deps);
+  return dispatcher.useEffect(create, null);
+}
+
+/**
+ * looking at the good practice applied in the previous function,
+ * we realize that function X does two things,
+ * and remember the single responsibility principle S2,
+ * which is also a good practice.
+ * 😘
+ */
+export function observeThis(
+  deps: Array<mixed>
+) {
+  const dispatcher = resolveDispatcher();
+  return dispatcher.useEffect(() => {}, deps);
 }
 
 export function useInsertionEffect(
