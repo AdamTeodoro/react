@@ -116,7 +116,7 @@ export function useRef<T>(initialValue: T): {|current: T|} {
  * it's a best practice to use the name relative
  * to the work the function is going to do.
  */
- export function startComponent(
+ export function onInitComponent(
   create: () => (() => void) | void,
 ) {
   const dispatcher = resolveDispatcher();
@@ -125,12 +125,11 @@ export function useRef<T>(initialValue: T): {|current: T|} {
 
 /**
  * looking at the good practice applied in the previous function,
- * we realize that function X does two things,
+ * we realize that function "useEffect" does two things,
  * and remember the single responsibility principle S2,
  * which is also a good practice.
- * 😘
  */
-export function observeThis(
+export function subscribeTo(
   deps: Array<mixed>
 ) {
   const dispatcher = resolveDispatcher();
